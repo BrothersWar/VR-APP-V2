@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class PlayerManager : MonoBehaviour
 {
     public static bool gameOver;
-    public GameObject gameOverPanel;
+    public GameObject GameOverPanel;
 
     void Start()
     {
@@ -17,7 +17,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (gameOver)
         {
-            gameOverPanel.SetActive(true);
+            GameOverPanel.SetActive(true);
             Time.timeScale = 0;
         }
 

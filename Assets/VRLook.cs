@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement; //So you can use SceneManager
 public class VRLook : MonoBehaviour
 {
     public Transform vrCamera;
@@ -17,6 +17,9 @@ public class VRLook : MonoBehaviour
     private float playerSpeed = 2.0f;
     private float jumpHeight = 3.0f;
     private float gravityValue = -9.81f;
+
+    public GameObject canvas;
+    public bool gameOverCheck = false;
 
 
     // Use this for initialization
@@ -41,6 +44,12 @@ public class VRLook : MonoBehaviour
         if (gameObject.transform.position.y < -50f)
         { 
             PlayerManager.gameOver = true;
+            if (gameOverCheck == false)
+            {
+                GameObject _canvas = Instantiate(canvas, transform.position, transform.rotation) as GameObject;
+            }
+            gameOverCheck = true;
+            //SceneManager.LoadScene("vr-work");
         }
 
         if (move != Vector3.zero)
@@ -73,8 +82,12 @@ public class VRLook : MonoBehaviour
     {
         if (collision.gameObject.tag == "Obstacle")
         {
-            print("obstacle32131");
+            print("game over");
+            GameObject[] walls = GameObject.FindGameObjectsWithTag("Obstacle");
+            foreach (GameObject enemy in walls)
+                GameObject.Destroy(enemy);
             PlayerManager.gameOver = true;
+            //SceneManager.LoadScene("vr-work");
         }
     }
 }
