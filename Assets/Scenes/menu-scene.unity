@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 34bed7c3b041ca5438408ff7132bd09e, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -171,6 +171,7 @@ MonoBehaviour:
   moveForward: 0
   canJump: 1
   distanceMoved: {fileID: 0}
+  distanceMovedResult: {fileID: 0}
   canvas: {fileID: 6718421817982387278, guid: 4149ec78fb9d9c1468cdb29d7a20b8b4, type: 3}
   gameOverCheck: 0
 --- !u!143 &346164238
@@ -251,7 +252,7 @@ PrefabInstance:
     - target: {fileID: 6718421817982387274, guid: 4149ec78fb9d9c1468cdb29d7a20b8b4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.99
+      value: -14.175
       objectReference: {fileID: 0}
     - target: {fileID: 6718421817982387274, guid: 4149ec78fb9d9c1468cdb29d7a20b8b4,
         type: 3}
