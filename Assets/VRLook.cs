@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement; //So you can use SceneManager
+
+using UnityEngine.UI;
+
 public class VRLook : MonoBehaviour
 {
     public Transform vrCamera;
@@ -11,6 +14,9 @@ public class VRLook : MonoBehaviour
     public bool canJump;
     private CharacterController cc;
     Rigidbody rb;
+
+    public Text distanceMoved;
+    float distanceunit = 0;
 
     private Vector3 playerVelocity;
     private bool groundedPlayer;
@@ -27,6 +33,8 @@ public class VRLook : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         cc = GetComponent<CharacterController>();
+
+
     }
 
     // Update is called once per frame
@@ -42,7 +50,7 @@ public class VRLook : MonoBehaviour
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
         if (gameObject.transform.position.y < -50f)
-        { 
+        {
             PlayerManager.gameOver = true;
             if (gameOverCheck == false)
             {
@@ -73,11 +81,13 @@ public class VRLook : MonoBehaviour
 
         if (moveForward)
         {
+            //InvokeRepeating("distance", 0, 1 / speed);
+            distance();
             Vector3 forward = vrCamera.TransformDirection(Vector3.forward);
             cc.SimpleMove(forward * speed);
         }
     }
-    
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Obstacle")
@@ -88,6 +98,15 @@ public class VRLook : MonoBehaviour
                 GameObject.Destroy(enemy);
             PlayerManager.gameOver = true;
             //SceneManager.LoadScene("vr-work");
+        }
+    }
+
+    private void distance()
+    {
+        if (PlayerManager.gameOver == false)
+        {
+            distanceunit = distanceunit + 1;
+            distanceMoved.text = distanceunit.ToString();
         }
     }
 }
